@@ -1,0 +1,33 @@
+2017/07/19 01:29:38 main.go:24: [::1]:49874 POST /graphql
+2017/07/19 01:30:12 main.go:24: [::1]:49879 POST /graphql
+2017/07/19 01:30:23 main.go:24: [::1]:49884 POST /graphql
+2017/07/19 01:30:53 main.go:24: [::1]:49891 POST /graphql
+2017/07/19 01:35:24 main.go:25: [::1]:49968 POST /graphql
+2017/07/19 01:35:45 main.go:25: [::1]:49973 POST /graphql
+2017/07/19 01:36:43 main.go:25: [::1]:49980 POST /graphql
+2017/07/19 01:36:43 main.go:27: POST /graphql HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 89
+Content-Type: application/graphql
+User-Agent: curl/7.51.0
+
+mutation M { newTodo: createTodo(text: "This is a todo mutation example") { text done } }
+2017/07/19 01:37:35 main.go:25: [::1]:49985 POST /graphql
+2017/07/19 01:37:35 main.go:27: POST /graphql HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 89
+Content-Type: application/graphql
+User-Agent: curl/7.51.0
+
+mutation M { newTodo: createTodo(text: "This is a todo mutation example") { text done } }
+2017/07/19 01:40:10 main.go:25: [::1]:50017 POST /graphql
+2017/07/19 01:40:10 main.go:27: POST /graphql HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 89
+Content-Type: application/graphql
+User-Agent: curl/7.51.0
+
+

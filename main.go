@@ -4,12 +4,42 @@ import (
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 	"net/http"
+	"net/http/httputil"
+	"fmt"
+	"log"
+	"os"
 )
 
 type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
 	Done bool   `json:"done"`
+}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "<h1>Hello World</h1><div>Welcome to whereever you are</div>")
+}
+
+func logRequest(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+		requestDump, _ := httputil.DumpRequest(r, true)
+		log.Printf("%s\n",string(requestDump))
+		fmt.Println(string(requestDump))
+		handler.ServeHTTP(w, r)
+	})
+}
+
+func openLogFile(logfile string) {
+	if logfile != "" {
+		lf, err := os.OpenFile(logfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0640)
+
+		if err != nil {
+			log.Fatal("OpenLogfile: os.OpenFile:", err)
+		}
+
+		log.SetOutput(lf)
+	}
 }
 
 func main() {
@@ -43,13 +73,17 @@ func main() {
 					"text": &graphql.ArgumentConfig{
 						Type: graphql.NewNonNull(graphql.String),
 					},
+					"text2": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
 				},
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 
           text, _ := params.Args["text"].(string)
+					text2, _ := params.Args["text2"].(string)
 					newTodo := &Todo{
 						ID:   "id0001",
-						Text: text,
+						Text: text + "_" + text2,
 						Done: false,
 					}
 
@@ -71,7 +105,21 @@ func main() {
 		Fields: graphql.Fields{
 			"lastTodo": &graphql.Field{
 				Type: todoType,
+				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+					todo := &Todo{
+						ID:   "id0001",
+						Text: "12345",
+						Done: false,
+					}
+					return todo, nil
+				},
 			},
+      "latestPost": &graphql.Field{
+				Type: graphql.String,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					return "world", nil
+				},
+      },
 		},
 	})
 
@@ -90,9 +138,16 @@ func main() {
 		Pretty: true,
 	})
 
+	logPath := "development.log"
+
+	openLogFile(logPath)
+
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+
 	// serve HTTP
+	http.HandleFunc("/", rootHandler)
 	http.Handle("/graphql", h)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", logRequest(http.DefaultServeMux))
 
 	// How to make a HTTP request using cUrl
 	// -------------------------------------
