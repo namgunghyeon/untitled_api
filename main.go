@@ -4,7 +4,6 @@ import (
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 	"net/http"
-	"net/http/httputil"
 	"fmt"
 	"log"
 	"os"
@@ -17,15 +16,13 @@ type Todo struct {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Hello World</h1><div>Welcome to whereever you are</div>")
+	fmt.Fprintf(w, "<h1>Hello World</h1>")
 }
 
 func logRequest(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
-		requestDump, _ := httputil.DumpRequest(r, true)
-		log.Printf("%s\n",string(requestDump))
-		fmt.Println(string(requestDump))
+		log.Println(r.RemoteAddr, r.Method, r.URL, r.Body)
+		fmt.Println(r.RemoteAddr, r.Method, r.URL, r.Body)
 		handler.ServeHTTP(w, r)
 	})
 }
@@ -138,7 +135,7 @@ func main() {
 		Pretty: true,
 	})
 
-	logPath := "development.log"
+	logPath := "./logs/development.log"
 
 	openLogFile(logPath)
 

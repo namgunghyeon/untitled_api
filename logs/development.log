@@ -1,0 +1,1 @@
+2017/07/19 23:38:30 main.go:24: [::1]:49854 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
