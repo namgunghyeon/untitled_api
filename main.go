@@ -4,39 +4,13 @@ import (
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 	"net/http"
-	"fmt"
-	"log"
-	"os"
+	"util/logger"
 )
 
 type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
 	Done bool   `json:"done"`
-}
-
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Hello World</h1>")
-}
-
-func logRequest(handler http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Println(r.RemoteAddr, r.Method, r.URL, r.Body)
-		fmt.Println(r.RemoteAddr, r.Method, r.URL, r.Body)
-		handler.ServeHTTP(w, r)
-	})
-}
-
-func openLogFile(logfile string) {
-	if logfile != "" {
-		lf, err := os.OpenFile(logfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0640)
-
-		if err != nil {
-			log.Fatal("OpenLogfile: os.OpenFile:", err)
-		}
-
-		log.SetOutput(lf)
-	}
 }
 
 func main() {
@@ -137,14 +111,12 @@ func main() {
 
 	logPath := "./logs/development.log"
 
-	openLogFile(logPath)
-
-	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+	logger.OpenLogFile(logPath)
 
 	// serve HTTP
-	http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/", logger.RootHandler)
 	http.Handle("/graphql", h)
-	http.ListenAndServe(":8080", logRequest(http.DefaultServeMux))
+	http.ListenAndServe(":8080", logger.LogRequest(http.DefaultServeMux))
 
 	// How to make a HTTP request using cUrl
 	// -------------------------------------

@@ -1,1 +1,8 @@
 2017/07/19 23:38:30 main.go:24: [::1]:49854 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:46:42 httplogger.go:16: [::1]:49889 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:46:59 httplogger.go:16: [::1]:49896 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:47:45 httpLogger.go:16: [::1]:49903 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:48:18 httpLogger.go:16: [::1]:49908 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:48:31 httpLogger.go:16: [::1]:49913 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:48:38 httpLogger.go:16: [::1]:49916 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
+2017/07/19 23:48:40 httpLogger.go:16: [::1]:49917 GET /graphql?query=mutation+M{newTodo:createTodo(text:"This+is+a+todo+mutation+example"){text+done}} {}
