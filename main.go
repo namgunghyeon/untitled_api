@@ -5,6 +5,7 @@ import (
 	"github.com/graphql-go/handler"
 	"net/http"
 	"util/logger"
+	"util/db"
 )
 
 type Todo struct {
@@ -119,7 +120,8 @@ func main() {
 					project, _ := params.Args["project"].(string)
 					version, _ := params.Args["version"].(string)
 					searchType, _ := params.Args["type"].(string)
-					name, _ := params.Args["type"].(string)
+					name, _ := params.Args["name"].(string)
+					db.Search(project, version, searchType, name)
 					search := &Search{
 						Project: project,
 						Version: version,
@@ -131,7 +133,6 @@ func main() {
       },
 		},
 	})
-
 	// define schema
 	schema, err := graphql.NewSchema(graphql.SchemaConfig{
 		Query:    rootQuery,
