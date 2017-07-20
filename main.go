@@ -13,6 +13,13 @@ type Todo struct {
 	Done bool   `json:"done"`
 }
 
+type Search struct {
+	Project   string `json:"Project"`
+	Version string `json:"Version"`
+	Type string   `json:"Type"`
+	Name string   `json:"Name"`
+}
+
 func main() {
 
 	// define custom GraphQL ObjectType `todoType` for our Golang struct `Todo`
@@ -30,6 +37,24 @@ func main() {
 			},
 			"done": &graphql.Field{
 				Type: graphql.Boolean,
+			},
+		},
+	})
+
+	searchType := graphql.NewObject(graphql.ObjectConfig{
+		Name: "Search",
+		Fields: graphql.Fields{
+			"Project": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Version": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Type": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Name": &graphql.Field{
+				Type: graphql.String,
 			},
 		},
 	})
@@ -74,21 +99,34 @@ func main() {
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "RootQuery",
 		Fields: graphql.Fields{
-			"lastTodo": &graphql.Field{
-				Type: todoType,
-				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-					todo := &Todo{
-						ID:   "id0001",
-						Text: "12345",
-						Done: false,
-					}
-					return todo, nil
+			"search": &graphql.Field{
+				Type: searchType,
+				Args: graphql.FieldConfigArgument{
+					"project": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+					"version": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+					"type": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
 				},
-			},
-      "latestPost": &graphql.Field{
-				Type: graphql.String,
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					return "world", nil
+				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+					project, _ := params.Args["project"].(string)
+					version, _ := params.Args["version"].(string)
+					searchType, _ := params.Args["type"].(string)
+					name, _ := params.Args["type"].(string)
+					search := &Search{
+						Project: project,
+						Version: version,
+						Type: searchType,
+						Name: name,
+					}
+					return search, nil
 				},
       },
 		},
@@ -110,7 +148,6 @@ func main() {
 	})
 
 	logPath := "./logs/development.log"
-
 	logger.OpenLogFile(logPath)
 
 	// serve HTTP
@@ -133,6 +170,7 @@ func main() {
 	// 3) using POST + Content-Type: application/json
 	// $ curl -XPOST http://localhost:8080/graphql -H 'Content-Type: application/json' -d '{"query": "mutation M { newTodo: createTodo(text: \"This is a todo mutation example\") { text done } }"}'
 	//
+	// $ curl -XPOST http://localhost:8080/graphql -H 'Content-Type: application/json' -d '{"query": "mutation M { newTodo: createTodo(text: \"This is a todo mutation example\") { text done } }"}'
 	// Any of the above would return the following output:
 	// {
 	//   "data": {
@@ -142,4 +180,6 @@ func main() {
 	// 	   }
 	//   }
 	// }
+	//curl -g -GET 'http://localhost:8080/graphql?query={lastTodo{text+done}}'
+	//curl -g -GET 'http://localhost:8080/graphql?query={search( project: "angular", version: "0.1.1", type: "function", name: "get"){text+done}}'
 }
