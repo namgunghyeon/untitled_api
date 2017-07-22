@@ -171,3 +171,5 @@
 2017/07/22 17:33:42 httpLogger.go:16: [::1]:52394 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
 2017/07/22 17:33:45 httpLogger.go:16: [::1]:52400 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
 2017/07/22 17:33:53 httpLogger.go:16: [::1]:52405 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
+2017/07/22 17:40:38 httpLogger.go:16: [::1]:52526 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
+2017/07/22 17:40:54 httpLogger.go:16: [::1]:52536 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
