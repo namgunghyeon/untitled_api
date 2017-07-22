@@ -57,6 +57,9 @@ func main() {
 			"Name": &graphql.Field{
 				Type: graphql.String,
 			},
+			"Path": &graphql.Field{
+				Type: graphql.String,
+			},
 		},
 	})
 

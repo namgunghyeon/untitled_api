@@ -159,3 +159,15 @@
 2017/07/22 17:27:41 httpLogger.go:16: [::1]:52272 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
 2017/07/22 17:27:46 httpLogger.go:16: [::1]:52276 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
 2017/07/22 17:27:50 httpLogger.go:16: [::1]:52282 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
+2017/07/22 17:31:23 httpLogger.go:16: [::1]:52322 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
+2017/07/22 17:31:25 httpLogger.go:16: [::1]:52327 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
+2017/07/22 17:31:33 httpLogger.go:16: [::1]:52332 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
+2017/07/22 17:32:15 httpLogger.go:16: [::1]:52345 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name}} {}
+2017/07/22 17:32:18 httpLogger.go:16: [::1]:52350 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path}} {}
+2017/07/22 17:32:41 httpLogger.go:16: [::1]:52361 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path}} {}
+2017/07/22 17:32:52 httpLogger.go:16: [::1]:52370 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path}} {}
+2017/07/22 17:33:18 httpLogger.go:16: [::1]:52383 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path}} {}
+2017/07/22 17:33:36 httpLogger.go:16: [::1]:52389 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
+2017/07/22 17:33:42 httpLogger.go:16: [::1]:52394 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
+2017/07/22 17:33:45 httpLogger.go:16: [::1]:52400 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
+2017/07/22 17:33:53 httpLogger.go:16: [::1]:52405 GET /graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}} {}
