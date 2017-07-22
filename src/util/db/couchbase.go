@@ -1,39 +1,23 @@
 package db
 
 import (
-  "fmt"
+  "strconv"
   "gopkg.in/couchbase/gocb.v1"
+  "model"
 )
 
-type Result struct {
-  Default map[string]Project `json:"default"`
-}
 
-type Project struct {
-	Project string `json:"project"`
-	Version string `json:"version"`
-	Type string `json:"type"`
-  Path string `json:path`
-  Name string `json:name`
-  Count int `json:count`
-}
-
-
-func Search(project string, version string, searchType string, name string) {
+func Search(project string, version string, searchType string, name string, limit int) []model.Project{
   cluster, _ := gocb.Connect("couchbase://192.168.56.213")
-  bucket, _ := cluster.OpenBucket("default", "")
-  where := `where project = "` + project + `" and version = "` + version + `" and type = "`+ searchType + `" and Name like "`+ name + `%"`
-  fmt.Println(where)
-  query := gocb.NewN1qlQuery("select * from default " + where)
+  bucket, _ := cluster.OpenBucket("project_data", "")
+  where := `where project = "` + project + `" and version = "` + version + `" and type = "`+ searchType + `" and name like "`+ name + `%" limit ` + strconv.Itoa(limit)
+  query := gocb.NewN1qlQuery("select project, version, type, name from project_data " + where)
   rows, _ := bucket.ExecuteN1qlQuery(query, nil)
-  var row interface{}
-  //var projects []Project
-  //items := []string{}
 
+  var row model.Project
+  var projects []model.Project
   for rows.Next(&row) {
-    //items = append(items, row["Name"])
-
-    //projects = append(projects,row)
-    fmt.Printf("Row: %s", row.(map[string]interface{})["default"])
+    projects = append(projects, row)
   }
+  return projects
 }

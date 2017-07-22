@@ -101,7 +101,7 @@ func main() {
 		Name: "RootQuery",
 		Fields: graphql.Fields{
 			"search": &graphql.Field{
-				Type: searchType,
+				Type: graphql.NewList(searchType),
 				Args: graphql.FieldConfigArgument{
 					"project": &graphql.ArgumentConfig{
 						Type: graphql.String,
@@ -121,14 +121,8 @@ func main() {
 					version, _ := params.Args["version"].(string)
 					searchType, _ := params.Args["type"].(string)
 					name, _ := params.Args["name"].(string)
-					db.Search(project, version, searchType, name)
-					search := &Search{
-						Project: project,
-						Version: version,
-						Type: searchType,
-						Name: name,
-					}
-					return search, nil
+					searches := db.Search(project, version, searchType, name, 10)
+					return searches, nil
 				},
       },
 		},
@@ -182,5 +176,5 @@ func main() {
 	//   }
 	// }
 	//curl -g -GET 'http://localhost:8080/graphql?query={lastTodo{text+done}}'
-	//curl -g -GET 'http://localhost:8080/graphql?query={search( project: "angular", version: "0.1.1", type: "function", name: "get"){text+done}}'
+	//curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"0.1.1",type:"function",name:"get"){Project}}'
 }

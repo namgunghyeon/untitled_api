@@ -16,6 +16,9 @@ $ curl -XPOST http://localhost:8080/graphql -H 'Content-Type: application/graphq
 3) using POST + Content-Type: application/json
 $ curl -XPOST http://localhost:8080/graphql -H 'Content-Type: application/json' -d '{"query": "mutation M { newTodo: createTodo(text: \"This is a todo mutation example\") { text done } }"}'
 
+4) curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"1.6.",type:"function",name:"a"){Project,Version,Name}}'
+
+
 Any of the above would return the following output:
 {
   "data": {
