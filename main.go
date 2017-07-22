@@ -22,11 +22,6 @@ type Search struct {
 }
 
 func main() {
-
-	// define custom GraphQL ObjectType `todoType` for our Golang struct `Todo`
-	// Note that
-	// - the fields in our todoType maps with the json tags for the fields in our struct
-	// - the field type matches the field type in our struct
 	todoType := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Todo",
 		Fields: graphql.Fields{
@@ -78,7 +73,6 @@ func main() {
 					},
 				},
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-
           text, _ := params.Args["text"].(string)
 					text2, _ := params.Args["text2"].(string)
 					newTodo := &Todo{
@@ -86,20 +80,12 @@ func main() {
 						Text: text + "_" + text2,
 						Done: false,
 					}
-
-					// return the new Todo object that we supposedly save to DB
-					// Note here that
-					// - we are returning a `Todo` struct instance here
-					// - we previously specified the return Type to be `todoType`
-					// - `Todo` struct maps to `todoType`, as defined in `todoType` ObjectConfig`
 					return newTodo, nil
 				},
 			},
 		},
 	})
 
-	// root query
-	// we just define a trivial example here, since root query is required.
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "RootQuery",
 		Fields: graphql.Fields{
@@ -130,7 +116,6 @@ func main() {
       },
 		},
 	})
-	// define schema
 	schema, err := graphql.NewSchema(graphql.SchemaConfig{
 		Query:    rootQuery,
 		Mutation: rootMutation,
@@ -148,7 +133,6 @@ func main() {
 	logPath := "./logs/development.log"
 	logger.OpenLogFile(logPath)
 
-	// serve HTTP
 	http.HandleFunc("/", logger.RootHandler)
 	http.Handle("/graphql", h)
 	http.ListenAndServe(":8080", logger.LogRequest(http.DefaultServeMux))
