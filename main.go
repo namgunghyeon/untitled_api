@@ -163,5 +163,5 @@ func main() {
 	//   }
 	// }
 	//curl -g -GET 'http://localhost:8080/graphql?query={lastTodo{text+done}}'
-	//curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"0.1.1",type:"function",name:"get"){Project}}'
+	//curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
 }
