@@ -5,6 +5,7 @@ import (
   "gopkg.in/couchbase/gocb.v1"
   "model"
   "conf"
+  "fmt"
 )
 
 
@@ -22,4 +23,36 @@ func Search(project string, version string, searchType string, name string, limi
     projects = append(projects, row)
   }
   return projects
+}
+
+func KeywordIndex(name string, limit int) []model.KeywordIndex{
+  config := conf.LoadCouchbase()
+  cluster, _ := gocb.Connect("couchbase://" + config.Couchbase.Host)
+  bucket, _ := cluster.OpenBucket("keyword_index", "")
+  where := `where keyword like "`+ name + `%" limit ` + strconv.Itoa(limit)
+  query := gocb.NewN1qlQuery("select keyword from keyword_index " + where)
+  rows, _ := bucket.ExecuteN1qlQuery(query, nil)
+  fmt.Println("query", query)
+  var row model.KeywordIndex
+  var KeywordIndexes []model.KeywordIndex
+  for rows.Next(&row) {
+    KeywordIndexes = append(KeywordIndexes, row)
+  }
+  return KeywordIndexes
+}
+
+func Keyword(name string, limit int) []model.Keyword{
+  config := conf.LoadCouchbase()
+  cluster, _ := gocb.Connect("couchbase://" + config.Couchbase.Host)
+  bucket, _ := cluster.OpenBucket("keyword", "")
+  where := `where keyword_index = "`+ name + `" `
+  query := gocb.NewN1qlQuery("select project, version, type, keyword_index, `path` from keyword " + where)
+  rows, _ := bucket.ExecuteN1qlQuery(query, nil)
+  fmt.Println("query", query)
+  var row model.Keyword
+  var keywords []model.Keyword
+  for rows.Next(&row) {
+    keywords = append(keywords, row)
+  }
+  return keywords
 }

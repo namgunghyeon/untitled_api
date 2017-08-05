@@ -58,6 +58,37 @@ func main() {
 		},
 	})
 
+	keywordIndexType := graphql.NewObject(graphql.ObjectConfig{
+		Name: "KeywordIndex",
+		Fields: graphql.Fields{
+			"Keyword": &graphql.Field{
+				Type: graphql.String,
+			},
+		},
+	})
+
+	keywordType := graphql.NewObject(graphql.ObjectConfig{
+		Name: "Keyword",
+		Fields: graphql.Fields{
+			"Project": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Version": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Type": &graphql.Field{
+				Type: graphql.String,
+			},
+			"KeywordIndex": &graphql.Field{
+				Type: graphql.String,
+			},
+			"Path": &graphql.Field{
+				Type: graphql.String,
+			},
+		},
+	})
+
+
 	// root mutation
 	rootMutation := graphql.NewObject(graphql.ObjectConfig{
 		Name: "RootMutation",
@@ -114,6 +145,32 @@ func main() {
 					return searches, nil
 				},
       },
+			"keywordIndex": &graphql.Field{
+				Type: graphql.NewList(keywordIndexType),
+				Args: graphql.FieldConfigArgument{
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+					name, _ := params.Args["name"].(string)
+					keywordIndexes := db.KeywordIndex(name, 10)
+					return keywordIndexes, nil
+				},
+			},
+			"keyword": &graphql.Field{
+				Type: graphql.NewList(keywordType),
+				Args: graphql.FieldConfigArgument{
+					"name": &graphql.ArgumentConfig{
+						Type: graphql.NewNonNull(graphql.String),
+					},
+				},
+				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+					name, _ := params.Args["name"].(string)
+					keywords := db.Keyword(name, 10)
+					return keywords, nil
+				},
+      },
 		},
 	})
 	schema, err := graphql.NewSchema(graphql.SchemaConfig{
@@ -164,4 +221,6 @@ func main() {
 	// }
 	//curl -g -GET 'http://localhost:8080/graphql?query={lastTodo{text+done}}'
 	//curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
+	//curl -g -GET 'http://localhost:8080/graphql?query={keywordIndex(name:"get"){Keyword}}'
+	//curl -g -GET 'http://localhost:8080/graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}}'
 }

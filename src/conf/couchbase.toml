@@ -2,3 +2,8 @@
 host = "192.168.56.213"
 project = "project_data"
 projectInfo = "project_info"
+
+[couchbase_staging]
+host = "104.156.238.187"
+project = "project_data"
+projectInfo = "project_info"
