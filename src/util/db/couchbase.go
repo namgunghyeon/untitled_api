@@ -25,12 +25,12 @@ func Search(project string, version string, searchType string, name string, limi
   return projects
 }
 
-func KeywordIndex(name string, limit int) []model.KeywordIndex{
+func KeywordIndex(name string, offset int, limit int) []model.KeywordIndex{
   config := conf.LoadCouchbase()
   cluster, _ := gocb.Connect("couchbase://" + config.Couchbase.Host)
   bucket, _ := cluster.OpenBucket("keyword_index", "")
-  where := `where keyword like "`+ name + `%" limit ` + strconv.Itoa(limit)
-  query := gocb.NewN1qlQuery("select keyword from keyword_index " + where)
+  where := `WHERE keyword LIKE "`+ name + `%" LIMIT ` + strconv.Itoa(limit) + " OFFSET " + strconv.Itoa(offset)
+  query := gocb.NewN1qlQuery("SELECT keyword FROM keyword_index " + where)
   rows, _ := bucket.ExecuteN1qlQuery(query, nil)
   fmt.Println("query", query)
   var row model.KeywordIndex
@@ -45,8 +45,8 @@ func Keyword(name string, limit int) []model.Keyword{
   config := conf.LoadCouchbase()
   cluster, _ := gocb.Connect("couchbase://" + config.Couchbase.Host)
   bucket, _ := cluster.OpenBucket("keyword", "")
-  where := `where keyword_index = "`+ name + `" `
-  query := gocb.NewN1qlQuery("select project, version, type, keyword_index, `path` from keyword " + where)
+  where := `WHERE keyword_index = "`+ name + `" `
+  query := gocb.NewN1qlQuery("SELECT project, version, type, keyword_index, `path` FROM keyword " + where)
   rows, _ := bucket.ExecuteN1qlQuery(query, nil)
   fmt.Println("query", query)
   var row model.Keyword

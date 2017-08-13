@@ -151,10 +151,18 @@ func main() {
 					"name": &graphql.ArgumentConfig{
 						Type: graphql.NewNonNull(graphql.String),
 					},
+					"offset": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"limit": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
 				},
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 					name, _ := params.Args["name"].(string)
-					keywordIndexes := db.KeywordIndex(name, 10)
+					limit, _ := params.Args["limit"].(int)
+					offset, _ := params.Args["offset"].(int)
+					keywordIndexes := db.KeywordIndex(name, offset, limit)
 					return keywordIndexes, nil
 				},
 			},
