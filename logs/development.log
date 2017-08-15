@@ -1286,3 +1286,98 @@
 2017/08/13 19:17:54 httpLogger.go:16: 127.0.0.1:54096 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30,)%7BKeyword%7D%7D {}
 2017/08/13 19:17:59 httpLogger.go:16: 127.0.0.1:54104 GET /graphql?query=%7Bkeyword(name:%22getBlockEnd%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
 2017/08/13 19:18:49 httpLogger.go:16: 127.0.0.1:54126 GET /graphql?query=%7BkeywordIndex(name:%22member%22,offset:0,limit:30,)%7BKeyword%7D%7D {}
+2017/08/16 02:23:10 httpLogger.go:16: [::1]:52845 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:23:10 cockroach.go:18: pq: syntax error at or near "EOF"
+SELECT keyword FROM keyword_index where keyword like'get'%
+                                                          ^
+2017/08/16 02:24:05 httpLogger.go:16: [::1]:52866 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:24:05 cockroach.go:20: pq: syntax error at or near "EOF"
+SELECT keyword FROM keyword_index where keyword like'get'%
+                                                          ^
+2017/08/16 02:24:48 httpLogger.go:16: [::1]:52884 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:24:49 cockroach.go:20: pq: syntax error at or near "EOF"
+SELECT keyword FROM keyword_index where keyword like'get'%
+                                                          ^
+2017/08/16 02:25:02 httpLogger.go:16: [::1]:52894 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:25:02 cockroach.go:20: pq: syntax error at or near "EOF"
+SELECT keyword FROM keyword_index where keyword like 'get'%
+                                                           ^
+2017/08/16 02:25:16 httpLogger.go:16: [::1]:52904 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:25:17 cockroach.go:28: sql: Scan error on column index 0: unsupported Scan, storing driver.Value type string into type *model.KeywordIndex
+2017/08/16 02:26:32 httpLogger.go:16: [::1]:52928 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:26:32 cockroach.go:28: sql: Scan error on column index 0: unsupported Scan, storing driver.Value type string into type *model.KeywordIndex
+2017/08/16 02:27:43 httpLogger.go:16: [::1]:52951 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:29:47 httpLogger.go:16: [::1]:52987 GET /graphql?query={keywordIndex(name:"get"){Keyword}} {}
+2017/08/16 02:30:16 httpLogger.go:16: [::1]:52994 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:30:18 httpLogger.go:16: [::1]:52998 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:10 httpLogger.go:16: [::1]:53049 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:15 httpLogger.go:16: [::1]:53056 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:15 cockroach.go:21: pq: syntax error at or near "limit30"
+SELECT keyword FROM keyword_index where keyword like 'get%' LIMIT30 OFFSET 0
+                                                            ^
+2017/08/16 02:32:24 httpLogger.go:16: [::1]:53065 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:28 httpLogger.go:16: [::1]:53067 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:37 httpLogger.go:16: [::1]:53072 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:32:41 httpLogger.go:16: [::1]:53078 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:38:19 httpLogger.go:16: [::1]:53169 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:38:43 httpLogger.go:16: [::1]:53179 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:39:27 httpLogger.go:16: [::1]:53193 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:39:36 httpLogger.go:16: [::1]:53204 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:39:36 cockroach.go:45: pq: syntax error at or near "`"
+SELECT project, version, type, keyword_index, `path` FROM keyword where keyword_index = 'getAttributesObject'
+                                              ^
+2017/08/16 02:39:53 httpLogger.go:16: [::1]:53213 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:39:54 cockroach.go:45: pq: syntax error at or near "`"
+SELECT project, version, type, keyword_index, `path` FROM keyword where keyword_index = 'getAttributesObject'
+                                              ^
+2017/08/16 02:40:51 httpLogger.go:16: [::1]:53233 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:40:51 cockroach.go:45: pq: syntax error at or near "`"
+SELECT project, version, type, keyword_index, `path` FROM keyword where keyword_index = 'getAttributesObject'
+                                              ^
+2017/08/16 02:41:12 httpLogger.go:16: [::1]:53245 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:41:12 cockroach.go:45: pq: syntax error at or near "`"
+SELECT project, version, type, keyword_index, `path` FROM keyword where keyword_index = 'getAttributesObject'
+                                              ^
+2017/08/16 02:41:49 httpLogger.go:16: [::1]:53262 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:41:49 cockroach.go:45: pq: syntax error at or near "`"
+SELECT project, version, type, keyword_index, `path` FROM keyword where keyword_index = 'getAttributesObject'
+                                              ^
+2017/08/16 02:42:17 httpLogger.go:16: [::1]:53274 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:42:19 httpLogger.go:16: [::1]:53277 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/16 02:45:25 httpLogger.go:16: 127.0.0.1:53360 GET /:8081/graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30,)%7BKeyword%7D%7D {}
+2017/08/16 02:46:04 httpLogger.go:16: 127.0.0.1:53392 GET /:8081/graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:46:41 httpLogger.go:16: [::1]:53403 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/16 02:47:07 httpLogger.go:16: 127.0.0.1:53426 GET /:8081/graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:47:34 httpLogger.go:16: 127.0.0.1:53449 GET /:8081/graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:48:16 httpLogger.go:16: 127.0.0.1:53477 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:48:52 httpLogger.go:16: 127.0.0.1:53490 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:48:53 httpLogger.go:16: 127.0.0.1:53495 GET /graphql?query=%7Bkeyword(name:%22getAttachId%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
+2017/08/16 02:48:56 httpLogger.go:16: 127.0.0.1:53501 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:50:05 httpLogger.go:16: 127.0.0.1:53522 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:50:08 httpLogger.go:16: 127.0.0.1:53527 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:50:10 httpLogger.go:16: 127.0.0.1:53534 GET /graphql?query=%7Bkeyword(name:%22getInitFunction%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
+2017/08/16 02:51:22 httpLogger.go:16: 127.0.0.1:53557 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:51:23 httpLogger.go:16: 127.0.0.1:53562 GET /graphql?query=%7Bkeyword(name:%22getAnchorNodes%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
+2017/08/16 02:51:34 httpLogger.go:16: 127.0.0.1:53608 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:52:09 httpLogger.go:16: 127.0.0.1:53772 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:52:11 httpLogger.go:16: 127.0.0.1:53789 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:52:50 httpLogger.go:16: 127.0.0.1:53958 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:52:52 httpLogger.go:16: 127.0.0.1:53971 GET /graphql?query=%7Bkeyword(name:%22getChildNodesSnapshot%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
+2017/08/16 02:52:56 httpLogger.go:16: 127.0.0.1:53994 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:53:12 httpLogger.go:16: 127.0.0.1:54071 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:53:15 httpLogger.go:16: 127.0.0.1:54088 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:53:47 httpLogger.go:16: 127.0.0.1:54235 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:53:51 httpLogger.go:16: 127.0.0.1:54261 GET /graphql?query=%7Bkeyword(name:%22getChunk%22)%7BProject,Version,KeywordIndex,Path,Type%7D%7D {}
+2017/08/16 02:54:00 httpLogger.go:16: 127.0.0.1:54304 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:54:03 httpLogger.go:16: 127.0.0.1:54322 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:54:30 httpLogger.go:16: 127.0.0.1:54443 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:54:32 httpLogger.go:16: 127.0.0.1:54454 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:54:34 httpLogger.go:16: 127.0.0.1:54468 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:92,limit:122)%7BKeyword%7D%7D {}
+2017/08/16 02:54:37 httpLogger.go:16: 127.0.0.1:54487 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:214,limit:244)%7BKeyword%7D%7D {}
+2017/08/16 02:54:40 httpLogger.go:16: 127.0.0.1:54500 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:227,limit:257)%7BKeyword%7D%7D {}
+2017/08/16 02:54:41 httpLogger.go:16: 127.0.0.1:54513 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:227,limit:257)%7BKeyword%7D%7D {}
+2017/08/16 02:55:36 httpLogger.go:16: 127.0.0.1:54759 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:0,limit:30)%7BKeyword%7D%7D {}
+2017/08/16 02:55:38 httpLogger.go:16: 127.0.0.1:54773 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:31,limit:61)%7BKeyword%7D%7D {}
+2017/08/16 02:55:41 httpLogger.go:16: 127.0.0.1:54792 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:92,limit:122)%7BKeyword%7D%7D {}
+2017/08/16 02:55:45 httpLogger.go:16: 127.0.0.1:54813 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:214,limit:244)%7BKeyword%7D%7D {}
+2017/08/16 02:55:48 httpLogger.go:16: 127.0.0.1:54830 GET /graphql?query=%7BkeywordIndex(name:%22get%22,offset:227,limit:257)%7BKeyword%7D%7D {}

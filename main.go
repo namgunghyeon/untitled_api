@@ -162,7 +162,7 @@ func main() {
 					name, _ := params.Args["name"].(string)
 					limit, _ := params.Args["limit"].(int)
 					offset, _ := params.Args["offset"].(int)
-					keywordIndexes := db.KeywordIndex(name, offset, limit)
+					keywordIndexes := db.CockroachKeywordIndex(name, offset, limit)
 					return keywordIndexes, nil
 				},
 			},
@@ -175,7 +175,7 @@ func main() {
 				},
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 					name, _ := params.Args["name"].(string)
-					keywords := db.Keyword(name, 10)
+					keywords := db.CockroachKeyword(name, 10)
 					return keywords, nil
 				},
       },
@@ -200,7 +200,7 @@ func main() {
 
 	http.HandleFunc("/", logger.RootHandler)
 	http.Handle("/graphql", h)
-	http.ListenAndServe(":8080", logger.LogRequest(http.DefaultServeMux))
+	http.ListenAndServe(":8081", logger.LogRequest(http.DefaultServeMux))
 
 	// How to make a HTTP request using cUrl
 	// -------------------------------------
@@ -227,8 +227,8 @@ func main() {
 	// 	   }
 	//   }
 	// }
-	//curl -g -GET 'http://localhost:8080/graphql?query={lastTodo{text+done}}'
-	//curl -g -GET 'http://localhost:8080/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
-	//curl -g -GET 'http://localhost:8080/graphql?query={keywordIndex(name:"get"){Keyword}}'
-	//curl -g -GET 'http://localhost:8080/graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}}'
+	//curl -g -GET 'http://localhost:8081/graphql?query={lastTodo{text+done}}'
+	//curl -g -GET 'http://localhost:8081/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
+	//curl -g -GET 'http://localhost8081/graphql?query={keywordIndex(name:"get"){Keyword}}'
+	//curl -g -GET 'http://localhost:8081/graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}}'
 }
