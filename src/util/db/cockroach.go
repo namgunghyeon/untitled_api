@@ -14,7 +14,7 @@ func CockroachKeywordIndex(name string, offset int, limit int) []model.KeywordIn
   if err != nil {
       log.Fatal("error connecting to the database: ", err)
   }
-  query := "SELECT keyword FROM keyword_index WHERE keyword LIKE '" + name + "%' LIMIT " + strconv.Itoa(limit) + " OFFSET " + strconv.Itoa(offset)
+  query := "SELECT A.keyword, B.project FROM keyword_index AS A INNER JOIN keyword_index_project_meta AS B ON A.keyword = B.keyword_index WHERE A.keyword LIKE '" + name + "%' LIMIT " + strconv.Itoa(limit) + " OFFSET " + strconv.Itoa(offset)
   rows, err := db.Query(query)
   fmt.Println("query", query)
   if err != nil {
@@ -24,10 +24,11 @@ func CockroachKeywordIndex(name string, offset int, limit int) []model.KeywordIn
   var KeywordIndexes []model.KeywordIndex
   for rows.Next() {
     var keyword string
-    if err := rows.Scan(&keyword); err != nil {
+    var project string
+    if err := rows.Scan(&keyword, &project); err != nil {
         log.Fatal(err)
     }
-    KeywordIndexes = append(KeywordIndexes, model.KeywordIndex{ Keyword: keyword })
+    KeywordIndexes = append(KeywordIndexes, model.KeywordIndex{ Keyword: keyword, Project: project })
   }
   return KeywordIndexes
 }
@@ -44,7 +45,7 @@ func CockroachKeyword(name string, limit int) []model.Keyword{
   if err != nil {
       log.Fatal(err)
   }
-
+  defer rows.Close()
   var keywords []model.Keyword
   for rows.Next() {
     var row model.Keyword

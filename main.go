@@ -64,6 +64,9 @@ func main() {
 			"Keyword": &graphql.Field{
 				Type: graphql.String,
 			},
+			"Project": &graphql.Field{
+				Type: graphql.String,
+			},
 		},
 	})
 
@@ -229,6 +232,6 @@ func main() {
 	// }
 	//curl -g -GET 'http://localhost:8081/graphql?query={lastTodo{text+done}}'
 	//curl -g -GET 'http://localhost:8081/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
-	//curl -g -GET 'http://localhost8081/graphql?query={keywordIndex(name:"get"){Keyword}}'
+	//curl -g -GET 'http://localhost:8081/graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}}'
 	//curl -g -GET 'http://localhost:8081/graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}}'
 }

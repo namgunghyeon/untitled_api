@@ -11,6 +11,7 @@ type Project struct {
 
 type KeywordIndex struct {
   Keyword string `json:"keyword"`
+	Project string `json:"proejct"`
 }
 
 type Keyword struct {
