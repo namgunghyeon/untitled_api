@@ -2,7 +2,7 @@ machine:
   environment:
     GOROOT: "/usr/local/go"
     GOPATH: "/root/untitled_api"
-    PATH: $GOPATH/bin:$GOROOT/bin:$PATH
+    PATH: "$GOPATH/bin:$GOROOT/bin:$PATH"
 
 test:
   override:
