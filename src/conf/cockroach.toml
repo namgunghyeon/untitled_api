@@ -1,0 +1,11 @@
+[cockroach_test]
+host = "root@104.156.238.187:26257"
+port = "26257"
+db = "untitled"
+sslMode = "disable"
+
+[cockroach_staging]
+host = "root@104.156.238.187:26257"
+port = "26257"
+db = "untitled"
+sslMode = "disable"

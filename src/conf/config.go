@@ -15,3 +15,12 @@ func LoadCouchbase() Config{
   }
   return conf
 }
+
+func LoadCockroach() Config{
+  var conf Config
+  if _, err := toml.DecodeFile("src/conf/cockroach.toml", &conf); err != nil {
+    fmt.Println("error", err)
+    return conf
+  }
+  return conf
+}

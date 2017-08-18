@@ -7,10 +7,12 @@ import (
   "model"
   "log"
   "fmt"
+  "conf"
 )
 
 func CockroachKeywordIndex(name string, offset int, limit int) []model.KeywordIndex{
-  db, err := sql.Open("postgres", "postgresql://root@104.156.238.187:26257/untitled?sslmode=disable")
+  config := conf.LoadCockroach()
+  db, err := sql.Open("postgres", "postgresql://" + config.Cockroach.Host + "/" + config.Cockroach.Db + "?sslmode=" + config.Cockroach.SSLMode)
   if err != nil {
       log.Fatal("error connecting to the database: ", err)
   }
@@ -34,7 +36,8 @@ func CockroachKeywordIndex(name string, offset int, limit int) []model.KeywordIn
 }
 
 func CockroachKeyword(name string, limit int) []model.Keyword{
-  db, err := sql.Open("postgres", "postgresql://root@104.156.238.187:26257/untitled?sslmode=disable")
+  config := conf.LoadCockroach()
+  db, err := sql.Open("postgres", "postgresql://" + config.Cockroach.Host + "/" + config.Cockroach.Db + "?sslmode=" + config.Cockroach.SSLMode)
   if err != nil {
       log.Fatal("error connecting to the database: ", err)
   }

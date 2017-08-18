@@ -1410,3 +1410,15 @@ SELECT keyword FROM keyword_index AS A WHERE A.keyword  INNER JOIN keyword_index
 2017/08/16 18:08:12 httpLogger.go:16: [::1]:62659 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword,Project}} {}
 2017/08/16 18:08:13 httpLogger.go:16: [::1]:62665 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword,Project}} {}
 2017/08/16 18:09:02 httpLogger.go:16: [::1]:62884 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword,Project}} {}
+2017/08/18 14:23:37 httpLogger.go:16: [::1]:53765 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:24:19 httpLogger.go:16: [::1]:53949 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:24:46 httpLogger.go:16: [::1]:54065 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:25:22 httpLogger.go:16: [::1]:54219 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:25:41 httpLogger.go:16: [::1]:54311 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:26:00 httpLogger.go:16: [::1]:54395 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:26:13 httpLogger.go:16: [::1]:54456 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:26:31 httpLogger.go:16: [::1]:54536 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:26:54 httpLogger.go:16: [::1]:54637 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:27:56 httpLogger.go:16: [::1]:54907 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:28:13 httpLogger.go:16: [::1]:54984 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
+2017/08/18 14:28:33 httpLogger.go:16: [::1]:55068 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
