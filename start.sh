@@ -1,2 +1,2 @@
-screen -D untitled_api
-screen -S untitled_api "./main"
+kill $(ps -ef | grep './main' | grep -v grep | awk '{print $2}')
+nohup ./main &
