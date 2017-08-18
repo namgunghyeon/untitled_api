@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"util/logger"
 	"util/db"
+	"fmt"
 )
 
 type Todo struct {
@@ -200,10 +201,11 @@ func main() {
 
 	logPath := "./logs/development.log"
 	logger.OpenLogFile(logPath)
-
+	fmt.Println("Start")
 	http.HandleFunc("/", logger.RootHandler)
 	http.Handle("/graphql", h)
 	http.ListenAndServe(":8081", logger.LogRequest(http.DefaultServeMux))
+
 
 	// How to make a HTTP request using cUrl
 	// -------------------------------------
