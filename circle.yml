@@ -5,11 +5,11 @@ test:
 dependencies:
   override:
     - echo "No Dependencies"
-    
+
 deployment:
   master:
     branch: master
     commands:
       - git clone git@github.com:namgunghyeon/untitled_api.git
       - rsync -avz untitled_api/ root@104.156.238.187:~/test
-      - ssh -i ~/.ssh/id_rsa_vultr root@104.156.238.187 'cd ~/test && bash -i ~/main'
+      - ssh root@104.156.238.187 'cd ~/test && bash -i ~/main'
