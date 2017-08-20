@@ -1431,3 +1431,4 @@ SELECT keyword FROM keyword_index AS A WHERE A.keyword  INNER JOIN keyword_index
 2017/08/20 20:48:47 httpLogger.go:16: [::1]:61372 GET /graphql?query={project{Name,Color}} {}
 2017/08/20 20:48:55 httpLogger.go:16: [::1]:61408 GET /graphql?query={project{Name,Color}} {}
 2017/08/20 20:49:10 httpLogger.go:16: [::1]:61476 GET /graphql?query={project{Name,Color}} {}
+2017/08/20 21:09:41 httpLogger.go:16: [::1]:50445 GET /graphql?query={projects{Name,Color}} {}

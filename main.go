@@ -93,7 +93,7 @@ func main() {
 	})
 
 	projectType := graphql.NewObject(graphql.ObjectConfig{
-		Name: "Project",
+		Name: "Projects",
 		Fields: graphql.Fields{
 			"Name": &graphql.Field{
 				Type: graphql.String,
@@ -195,7 +195,7 @@ func main() {
 					return keywords, nil
 				},
       },
-			"project": &graphql.Field{
+			"projects": &graphql.Field{
 				Type: graphql.NewList(projectType),
 				Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 					projects := db.CockroachProjects()
@@ -255,5 +255,5 @@ func main() {
 	//curl -g -GET 'http://localhost:8081/graphql?query={search(project:"angular",version:"1.6.0",type:"function",name:"a"){Project,Version,Name,Path,Type}}'
 	//curl -g -GET 'http://localhost:8081/graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}}'
 	//curl -g -GET 'http://localhost:8081/graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}}'
-	//curl -g -GET 'http://localhost:8081/graphql?query={project{Name,Color}}'
+	//curl -g -GET 'http://localhost:8081/graphql?query={projects{Name,Color}}'
 }
