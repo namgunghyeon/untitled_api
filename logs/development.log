@@ -1422,3 +1422,12 @@ SELECT keyword FROM keyword_index AS A WHERE A.keyword  INNER JOIN keyword_index
 2017/08/18 14:27:56 httpLogger.go:16: [::1]:54907 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
 2017/08/18 14:28:13 httpLogger.go:16: [::1]:54984 GET /graphql?query={keywordIndex(name:"get",offset:0,limit:30){Keyword}} {}
 2017/08/18 14:28:33 httpLogger.go:16: [::1]:55068 GET /graphql?query={keyword(name:"getAttributesObject"){Project,Version,KeywordIndex,Path,Type}} {}
+2017/08/20 20:44:45 httpLogger.go:16: [::1]:60359 GET /graphql?query={project(){name,color}} {}
+2017/08/20 20:45:05 httpLogger.go:16: [::1]:60442 GET /graphql?query={project{name,color}} {}
+2017/08/20 20:45:22 httpLogger.go:16: [::1]:60517 GET /graphql?query={project{name,color}} {}
+2017/08/20 20:45:52 httpLogger.go:16: [::1]:60638 GET /graphql?query={project{name,color}} {}
+2017/08/20 20:46:29 httpLogger.go:16: [::1]:60795 GET /graphql?query={project{name,color}} {}
+2017/08/20 20:48:42 httpLogger.go:16: [::1]:61350 GET /graphql?query={project{Name,Color}} {}
+2017/08/20 20:48:47 httpLogger.go:16: [::1]:61372 GET /graphql?query={project{Name,Color}} {}
+2017/08/20 20:48:55 httpLogger.go:16: [::1]:61408 GET /graphql?query={project{Name,Color}} {}
+2017/08/20 20:49:10 httpLogger.go:16: [::1]:61476 GET /graphql?query={project{Name,Color}} {}

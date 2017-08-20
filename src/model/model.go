@@ -22,3 +22,8 @@ type Keyword struct {
   KeywordIndex string `json:"keyword_index"`
   Count int `json:"count"`
 }
+
+type ProjectInfo struct {
+	Name string `json:"name"`
+	Color string `json:"color"`
+}

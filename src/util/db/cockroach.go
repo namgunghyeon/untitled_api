@@ -59,3 +59,28 @@ func CockroachKeyword(name string, limit int) []model.Keyword{
   }
   return keywords
 }
+
+func CockroachProjects() []model.ProjectInfo{
+  config := conf.LoadCockroach()
+  db, err := sql.Open("postgres", "postgresql://" + config.Cockroach.Host + "/" + config.Cockroach.Db + "?sslmode=" + config.Cockroach.SSLMode)
+  if err != nil {
+      log.Fatal("error connecting to the database: ", err)
+  }
+
+  query := "SELECT name, color FROM project";
+  rows, err := db.Query(query)
+  fmt.Println("query", query)
+  if err != nil {
+      log.Fatal(err)
+  }
+  defer rows.Close()
+  var projectInfos []model.ProjectInfo
+  for rows.Next() {
+    var row model.ProjectInfo
+    if err := rows.Scan(&row.Name, &row.Color); err != nil {
+        log.Fatal(err)
+    }
+    projectInfos = append(projectInfos, row)
+  }
+  return projectInfos
+}
