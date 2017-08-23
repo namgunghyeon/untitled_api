@@ -8,7 +8,7 @@ import (
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Hello World</h1>")
+	fmt.Fprintf(w, "<h1>loaderio-a22adf314200e40e5f3803a33cf413c7</h1>")
 }
 
 func LogRequest(handler http.Handler) http.Handler {
