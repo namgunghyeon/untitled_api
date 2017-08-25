@@ -1432,3 +1432,11 @@ SELECT keyword FROM keyword_index AS A WHERE A.keyword  INNER JOIN keyword_index
 2017/08/20 20:48:55 httpLogger.go:16: [::1]:61408 GET /graphql?query={project{Name,Color}} {}
 2017/08/20 20:49:10 httpLogger.go:16: [::1]:61476 GET /graphql?query={project{Name,Color}} {}
 2017/08/20 21:09:41 httpLogger.go:16: [::1]:50445 GET /graphql?query={projects{Name,Color}} {}
+2017/08/26 00:54:12 httpLogger.go:37: [::1]:53680 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 00:54:20 httpLogger.go:37: [::1]:53680 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 00:54:41 httpLogger.go:37: [::1]:53688 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 00:57:14 httpLogger.go:37: [::1]:53783 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 00:59:13 httpLogger.go:25: [::1]:53802 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 01:01:11 httpLogger.go:25: [::1]:53867 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 01:03:14 httpLogger.go:98: [::1]:53928 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
+2017/08/26 01:03:28 httpLogger.go:98: [::1]:53934 GET /graphql?query={keywordIndex(name:%22get%22,offset:92,limit:122){Keyword,Project}} {}
