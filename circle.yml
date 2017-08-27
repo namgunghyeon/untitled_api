@@ -12,4 +12,6 @@ deployment:
     commands:
       - git clone git@github.com:namgunghyeon/untitled_api.git
       - rsync -avz untitled_api/ root@104.156.238.187:~/test
-      - ssh -t root@104.156.238.187 'cd ~/test && bash -i dockerStop.sh && bash -i dockerBuild.sh && bash -i dockerStart.sh'
+      - ssh -t root@104.156.238.187 'cd ~/test && bash -i dockerStop.sh'
+      - ssh -t root@104.156.238.187 'cd ~/test && bash -i dockerBuild.sh'
+      - ssh -t root@104.156.238.187 'cd ~/test && bash -i dockerStart.sh'
